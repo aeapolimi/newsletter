@@ -19,7 +19,8 @@ def main():
     docs = users_ref.stream()
     destinatari = [doc.to_dict()["email"] for doc in docs]
 
-    s = SMTP_SSL(host='smtps.aruba.it', port=465)
+    s = SMTP(host='smtp.office365.com', port=587)
+    s.starttls()
     s.login(password.mail, password.password)
     msg = EmailMessage()
     msg.set_content("Ciao")
